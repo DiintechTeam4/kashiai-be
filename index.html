@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
+  </head>
+  <body>
+    <label for="sessionId"></label>
+    <input type="text" id="sessionId"/>
+    <button type="button" id="renderBtn">
+      Pay Now
+    </button>
+  </body>
+  <script>
+      const cashfree = Cashfree({
+        mode: "sandbox" //or production,
+      });
+      document.getElementById("renderBtn").addEventListener("click", () => {
+        let id = document.getElementById("sessionId").value
+        cashfree.checkout({
+          paymentSessionId: id,
+          returnUrl: "https://webhook.site/d55c6417-51f1-4bd3-b529-d09defd10af2"
+        });
+      });
+  </script>
+</html>
